@@ -18,7 +18,7 @@ class User
     {
         try {
             global $pdo;
-            $user = "INSERT INTO users (name, username, password, role_id) VALUES ('$this->name', '$this->username', '$this->password', $this->role_id)";
+            $user = "INSERT INTO users (name, username, password, role_id) VALUES ('$this->name', '$this->username', '$this->password', '$this->role_id')";
             $pdo->exec($user);
             $_SESSION['success'] = "Register Success!";
             header('location: /register');

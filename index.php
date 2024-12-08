@@ -10,6 +10,14 @@ if ($uri == '/') {
     return require 'controllers/HomeController.php';
 }
 
+if ($uri == '/visitor') {
+    return require 'controllers/VisitorController.php';
+}
+
+if ($uri == '/membership') {
+    return require 'controllers/MembershipController.php';
+}
+
 if ($uri == '/book') {
     return require 'controllers/BookController.php';
 }

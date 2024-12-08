@@ -2,6 +2,11 @@
 if (!defined('SECURE_ACCESS')) {
     die('Direct access not permitted');
 }
+
+if (isset($_SESSION['is_login']) == false) {
+    header("location: /login");
+}
+
 include('templates/header.php') ?>
 
 <div class="main-content login-panel">
@@ -14,14 +19,6 @@ include('templates/header.php') ?>
         </div>
         <div class="bottom">
             <h3 class="panel-title">Register</h3>
-            <?php if (isset($_SESSION['success'])) : ?>
-                <div class="alert alert-success text-center">
-                    <?php
-                    echo $_SESSION['success'];
-                    unset($_SESSION['success']);
-                    ?>
-                </div>
-            <?php endif ?>
             <?php if (isset($_SESSION['error'])) : ?>
                 <div class="alert alert-danger text-center">
                     <?php

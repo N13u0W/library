@@ -14,15 +14,31 @@ include('templates/header.php') ?>
         </div>
         <div class="bottom">
             <h3 class="panel-title">Login</h3>
-            <form method="POST" action="/db/auth.php">
+            <?php if (isset($_SESSION['success'])) : ?>
+                <div class="alert alert-success text-center">
+                    <?php
+                    echo $_SESSION['success'];
+                    unset($_SESSION['success']);
+                    ?>
+                </div>
+            <?php endif ?>
+            <?php if (isset($_SESSION['error'])) : ?>
+                <div class="alert alert-danger text-center">
+                    <?php
+                    echo $_SESSION['error'];
+                    unset($_SESSION['error']);
+                    ?>
+                </div>
+            <?php endif ?>
+            <form method="POST" action="/login">
                 <div class="input-group mb-25">
                     <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
                     <input
                         type="text"
                         class="form-control"
-                        placeholder="Username or email address"
-                        name="email"
-                        value="<?= isset($_SESSION['email']) ? $_SESSION['email'] : '' ?>">
+                        placeholder="Username"
+                        name="username"
+                        value="<?= isset($_SESSION['username']) ? $_SESSION['username'] : '' ?>">
                 </div>
                 <div class="input-group mb-20">
                     <span class="input-group-text"><i class="fa-regular fa-lock"></i></span>

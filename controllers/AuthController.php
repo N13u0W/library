@@ -6,6 +6,22 @@ class AuthController extends Controller
 {
     public static function index()
     {
+        if (count($_POST) > 0) {
+            $username = htmlspecialchars($_POST['username']);
+            $password = $_POST['password'];
+
+            if ($username == '' || $_POST['password'] == '') {
+                $_SESSION['error'] = "All fields me be filled!";
+                $_SESSION['username'] = $username;
+
+
+                header('location: /login');
+                die();
+            }
+            $user = new User;
+            $user->auth($username, $password);
+            die();
+        }
         return self::view("views/login.php");
     }
 
@@ -31,7 +47,7 @@ class AuthController extends Controller
                 die();
             }
 
-            $user = new User($name, $username, $password, 1);
+            $user = new User();
             $user->register();
             die();
         }
